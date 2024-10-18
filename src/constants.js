@@ -16,4 +16,4 @@ export const prefectures = [
     { name: '山梨県', code: 19 },
 ];
 
-export const years = [2015, 2010, 2005, 2000, 1995];
+export const years = [2020, 2015, 2010, 2005, 2000, 1995];

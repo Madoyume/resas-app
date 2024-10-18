@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import { prefectures, years } from './constants';
+import Papa from 'papaparse';
 
 /*
     function: App
@@ -10,8 +11,10 @@ import { prefectures, years } from './constants';
 */
 
 function App() {
+  // 人口データを取得
   const [populationData, setPopulationData] = useState([]);
 
+  // RESAS APIから人口データを取得
   useEffect(() => {
     const fetchPopulationData = async () => {
       try {
@@ -25,6 +28,7 @@ function App() {
             }
           );
     
+          // 取得したjsonデータ読み込み
           const data = await response.json();
   
           return { name: prefecture.name, data: data.result.data[0].data };
@@ -38,11 +42,57 @@ function App() {
   
     fetchPopulationData();
   }, []);
-  
+
+  // 友好度情報CSVデータを取得
+  const [csvFriendlyData, setCsvFriendlyData] = useState([]);
+
+  // 友好度データCSV読み込み処理
+  useEffect(() => {
+    // publicフォルダ内のCSVファイルを読み込み
+    fetch('/csv/sample.csv')
+    .then(response => {
+      if (!response.ok) {
+        // エラーが発生した場合
+        throw new Error('友好度データの読み込みに失敗しました。');
+      }
+      return response.text();
+    })
+
+    // fetchで読み込んだCSVテキストをPapaParseでパース
+    .then(csvText => {
+      Papa.parse(csvText, {
+        header: true,
+        skipEmptyLines: true,
+        complete: (results) => {
+          // ヘッダー行をスライス加工
+          const deleteHeaderData = results.data.map(row => ({
+            base: row.x,
+            values: Object.entries(row).slice(1)
+          }));
+          // パースされたCSVデータをセットする
+          setCsvFriendlyData(deleteHeaderData);
+        }
+      });
+    })
+
+    // 例外処理
+    .catch(error => {
+      console.error('友好度データの読み込みに失敗しました。', error);
+    });
+
+  // コンポーネントの初回マウント時にのみ実行する
+  }, []);
+
+  // 表示処理
   return (
     <div className="App">
       <h1>首都圏の総人口</h1>
       <PopulationTable data={populationData} />
+
+      <h1>友好度データの読み込み結果</h1>
+
+      {/* CSVデータの表示 */}
+      <pre>{JSON.stringify(csvFriendlyData, null, 2)}</pre>
     </div>
   );
 }
