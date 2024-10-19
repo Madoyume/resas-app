@@ -1,4 +1,4 @@
-# 環境構築手順
+# 〇環境構築手順
 ## 1.React環境のセットアップ
 
 以下の手順で開発環境を構築しました。
@@ -13,13 +13,13 @@ https://opendata.resas-portal.go.jp/
 
 RESAS APIにアカウント登録し、開発用のAPIキーを取得しました。
 
-## 2.Papa parseのインストール
+## 3.Papa parseのインストール
 
 `npm install papaparse`
 
 読み取ったCSVをパースするために使えるライブラリをインストールしました。
 
-# 参考
+# 〇参考
 ## 新・日本一わかりやすいReact入門【基礎編】Reactの基礎知識
 https://youtu.be/XKSYF2aZnkQ?si=ZIpMr4235pw3zaGj
 
