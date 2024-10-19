@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/resas-app/static/css/main.6352dfa8.css",
+    "main.js": "/resas-app/static/js/main.56252c08.js",
+    "static/js/453.938921f3.chunk.js": "/resas-app/static/js/453.938921f3.chunk.js",
+    "index.html": "/resas-app/index.html",
+    "main.6352dfa8.css.map": "/resas-app/static/css/main.6352dfa8.css.map",
+    "main.56252c08.js.map": "/resas-app/static/js/main.56252c08.js.map",
+    "453.938921f3.chunk.js.map": "/resas-app/static/js/453.938921f3.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6352dfa8.css",
+    "static/js/main.56252c08.js"
+  ]
+}
