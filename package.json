@@ -12,10 +12,7 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
-  "homepage": "https://Madoyume.github.io/resas-app",
   "scripts": {
-    "predeploy":"npm run build",
-    "deploy":"gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -40,7 +37,6 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "gh-pages": "^6.2.0"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
 }
