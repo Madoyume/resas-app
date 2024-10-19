@@ -1,3 +1,68 @@
+# 環境構築手順
+## 1.React環境のセットアップ
+
+以下の手順で開発環境を構築しました。
+
+1. Node.js(v20.18.0)インストール
+2. npx create-react-app resus-app
+3. cd .\resas-app\
+4. npm start
+
+## 2.RESAS APIのアカウント登録
+https://opendata.resas-portal.go.jp/
+
+RESAS APIにアカウント登録し、開発用のAPIキーを取得しました。
+
+## 2.Papa parseのインストール
+
+`npm install papaparse`
+
+読み取ったCSVをパースするために使えるライブラリをインストールしました。
+
+# 参考
+## 新・日本一わかりやすいReact入門【基礎編】Reactの基礎知識
+https://youtu.be/XKSYF2aZnkQ?si=ZIpMr4235pw3zaGj
+
+Reactはしっかり触ったことが無かったので、基礎知識を学ぶためにYouTube検索でヒットしたこの動画を一気見しました。
+環境構築やReactの概念、useStateとuseEffectの仕組みを理解するために活用しています。
+今回のアプリを構築するにあたり必要な要素のほとんどをこの動画からスタートしました。
+
+## Zenn - Promise.all()を使って反復処理を速く実行
+https://zenn.dev/nori_maki/articles/16906e4c2feaa7
+
+RESASから取得するデータが複数あるため、非同期処理を連続で実装する方法を検索して参考にしました。
+Promise.All()で要素数に応じて反復処理による処理効率の改善する手法を紹介しており、
+RESASでマップした定数ごとに処理を反復させるために活用しています。
+
+## JavaScriptのスマートな配列操作テクニック
+https://ics.media/entry/200825/
+Javascriptで配列要素の操作を実施するために参考にしました。
+mapメソッドの利用により、既存の配列を加工して新しい配列を作成するのに活用しています。
+
+## Apidog - ReactでFetchを使ってAPIからデータを取得
+https://apidog.com/jp/blog/react-fetch-api-tutorial/
+
+RESAS APIからデータを取得して加工するために検索した結果ヒットしたブログを参考にしました。
+ReactからAPIコールしてデータを画面表示する実装部分で利用しています。
+
+## 【JavaScriptの基本】配列メソッド -forEach・map・filterの違い
+https://tcd-theme.com/2021/07/javascript-array-foreach-map-filter.html
+
+javascriptにおける配列データの操作メソッドを検索して、ヒットした当ブログを参考にしました。
+
+## サメハック - Papaparseを使ってCSVファイルを読み込もう！
+https://samehack.com/papaparse/
+
+CSVの読み取りとデータ加工を実装するために、Google検索でトップに出た当ブログを参考にしました。
+App.js内に追加で実装したCSVファイルの読み取り処理の部分で利用しています。
+
+## DevelopersIO - JavaScriptでCSVを読み込んでJSONを作る 
+https://dev.classmethod.jp/articles/how-to-make-json-from-csv-using-javascript/
+
+読み込んだCSVファイルをJSON形式で加工するために、CSV-JSONで検索して参考にしました。
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
