@@ -1,6 +1,14 @@
 import React from 'react';
 import { years } from '../constants';
 
+/**
+ * @name PopulationTable
+ * @description 
+ * @author T.kotani
+ * @param data RESAS-APIデータ
+ * @returns 
+ */
+
 const PopulationTable = ({ data }) => {
     if (data.length === 0) {
         return <div>Loading...</div>;

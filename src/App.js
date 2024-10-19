@@ -3,13 +3,14 @@ import './App.css';
 import { prefectures } from './constants';
 import Papa from 'papaparse';
 import PopulationTable from './com/PopulationTable';
+import buildFriendlyData from './com/buildFriendlyData';
+import findBestGrouping from './com/findBestGrouping';
+import FriendlyGroupsDisp from './com/FriendlyGroupsDisp';
 
-/*
-    function: App
-
-    created: 2024.10.15 kotani
-    updated:
-*/
+/**
+ * @name RESAS-App
+ * @author T.kotani
+ */
 
 function App() {
   // 人口データを取得
@@ -29,7 +30,7 @@ function App() {
             }
           );
     
-          // 取得したjsonデータ読み込み
+          // 取得したデータをjson形式で代入
           const data = await response.json();
   
           return { name: prefecture.name, data: data.result.data[0].data };
@@ -81,8 +82,27 @@ function App() {
       console.error('友好度データの読み込みに失敗しました。', error);
     });
 
-  // コンポーネントの初回マウント時にのみ実行する
+  // コンポーネントの初回レンダリング後にのみ実行する
   }, []);
+
+  // 友好度が最大になるグループ配列
+  const [bestGrouping, setBestGrouping] = useState([]);
+  // 友好度合計の最大値
+  const [bestScore, setBestScore] = useState(0);
+
+  useEffect(() => {
+    // csvFriendlyDataから数値データの連想配列を構築
+    const matrix = buildFriendlyData(csvFriendlyData);
+    // csvFriendlyDataからbase(ヘッダー行)を取り出して配列化
+    const headers = csvFriendlyData.map(row => row.base);
+
+    // 友好度が最大値になるグループ分けを算出
+    const { bestGrouping, bestScore } = findBestGrouping(matrix, headers);
+    setBestGrouping(bestGrouping);
+    setBestScore(bestScore);
+
+  // [csvFriendlyData]が変更されるたびに実行
+  }, [csvFriendlyData]);
 
   // 表示処理
   return (
@@ -90,10 +110,11 @@ function App() {
       <h1>首都圏の総人口</h1>
       <PopulationTable data={populationData} />
 
-      <h1>友好度データの読み込み結果</h1>
+      <h1>友好度グループ分け結果</h1>
+      <FriendlyGroupsDisp groups={bestGrouping} />
 
-      {/* CSVデータの表示 */}
-      <pre>{JSON.stringify(csvFriendlyData, null, 2)}</pre>
+      <h1>友好度の合計: {bestScore}</h1>
+
     </div>
   );
 }
