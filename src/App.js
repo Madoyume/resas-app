@@ -108,7 +108,7 @@ function App() {
   return (
     <div className="App">
       <h1>首都圏の総人口</h1>
-      <PopulationTable data={populationData} />
+      <PopulationTable data={populationData} groups={bestGrouping} />
 
       <h1>友好度グループ分け結果</h1>
       <FriendlyGroupsDisp groups={bestGrouping} />
